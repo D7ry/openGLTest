@@ -1,6 +1,7 @@
+#include <iostream>
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
-#include <iostream>
+#include "render_loop.h"
 
 const int window_width = 1024;
 const int window_height = 768;
@@ -11,13 +12,7 @@ void framebuffer_resize_callback(GLFWwindow* a_window, int a_width, int a_height
 	glViewport(0, 0, a_width, a_height);
 }
 
-void render_loop(GLFWwindow* a_window)
-{
-	while (!glfwWindowShouldClose(a_window)) {
-		glfwSwapBuffers(a_window);
-		glfwPollEvents();
-	}
-}
+
 
 int main()
 {
@@ -52,7 +47,7 @@ int main()
 	glViewport(0, 0, window_width, window_height); // this needs to be equal to glfwCreatWindow's params
 	glfwSetFramebufferSizeCallback(new_window, framebuffer_resize_callback); // so that openGL window resizes with glfw
 
-	render_loop(new_window); // enter render loop for actual rendering
+	render_loop::start_render_loop(new_window); // enter render loop for actual rendering
 	glfwTerminate();
 	return 0;
 }
