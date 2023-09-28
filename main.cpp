@@ -49,5 +49,10 @@ int main()
 
 	render_loop::start_render_loop(new_window); // enter render loop for actual rendering
 	glfwTerminate();
+
+	while (1) {
+		
+	}
+
 	return 0;
 }
