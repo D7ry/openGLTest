@@ -8,12 +8,7 @@
 
 #include "ShaderProgram.h"
 
-
-const std::string shader_path = "C://Users//Ty//repo//openGLTest//";
-const std::string shader_vertex_name = "shader_vertex.glsl";
-const std::string shader_fragment_name = "shader_fragment.glsl";
-
-
+#define _CRT_SECURE_NO_WARNINGS
 void render_loop::start_render_loop(GLFWwindow* a_window)
 {
 	int  success;
@@ -35,7 +30,18 @@ void render_loop::start_render_loop(GLFWwindow* a_window)
 		0, 1, 3, // first triangle
 		1, 2, 3  // second triangle
 	};
-	
+
+	std::string shader_path = "";
+	char* buf;
+	size_t len = 0;
+	if (_dupenv_s(&buf, &len, "GLSL_SHADER_PATH") == 0) {
+		shader_path = buf;
+		free(buf);
+	}
+			
+	const std::string shader_vertex_name = "shader_vertex.glsl";
+	const std::string shader_fragment_name = "shader_fragment.glsl";
+
 	std::string vertex_path = (shader_path + shader_vertex_name);
 	std::string fragment_path = (shader_path + shader_fragment_name);
 	ShaderProgram shader_program(vertex_path, fragment_path);
