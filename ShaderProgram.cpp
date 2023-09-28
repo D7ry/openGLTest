@@ -84,6 +84,21 @@ void ShaderProgram::use()
 	glUseProgram(this->ID);
 }
 
+void ShaderProgram::set_uniform_4f(const char* a_uniform_name, float a_x, float a_y, float a_z, float a_w)
+{
+	this->use(); // must be using the program before setting uniform TODO: can queue uniform set until next use.
+	unsigned int uniform_location = glGetUniformLocation(this->ID, a_uniform_name);
+	if (uniform_location == -1) {
+		throw std::exception(std::string("ShaderProgram::set_uniform_4f: Uniform not found for " + std::string(a_uniform_name)).data());
+	}
+	glUniform4f(uniform_location, a_x, a_y, a_z, a_w);
+}
+
+void ShaderProgram::set_uniform_4f(std::string& a_uniform_name, float a_x, float a_y, float a_z, float a_w)
+{
+	this->set_uniform_4f(a_uniform_name.data(), a_x, a_y, a_z, a_w);
+}
+
 unsigned int ShaderProgram::create_gl_shader(const char* a_src, unsigned int a_shader_type)
 {
 	

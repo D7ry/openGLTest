@@ -15,6 +15,9 @@ public:
 	/// Use this ShaderProgram, must be called before drawing in the render loop.
 	/// </summary>
 	void use();
+	
+	void set_uniform_4f(const char* a_uniform_name, float a_x, float a_y, float a_z, float a_w);
+	void set_uniform_4f(std::string& a_uniform_name, float a_x, float a_y, float a_z, float a_w);
 
 private:
 	std::string _vertex_path;

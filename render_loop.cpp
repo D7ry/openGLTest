@@ -73,10 +73,18 @@ void render_loop::start_render_loop(GLFWwindow* a_window)
 	glBindVertexArray(0);
 
 	printf("Starting render loop...");
+	
+	float i = 0.01;
 	while (!glfwWindowShouldClose(a_window)) {
 		glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT);
-
+		
+		
+		i += 0.01;
+		if (i >= 1) {
+			i = 0.01;
+		}
+		shader_program.set_uniform_4f("customColor", 0.0f, i, 1.0f, 1.0f);
 		
 		glBindVertexArray(VAO1);
 		glDrawArrays(GL_TRIANGLES, 0, 3);

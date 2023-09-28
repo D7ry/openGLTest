@@ -1,7 +1,9 @@
 #include <iostream>
+#include <thread>
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 #include "render_loop.h"
+
 
 const int window_width = 1024;
 const int window_height = 768;
@@ -50,9 +52,7 @@ int main()
 	render_loop::start_render_loop(new_window); // enter render loop for actual rendering
 	glfwTerminate();
 
-	while (1) {
-		
-	}
+	std::this_thread::sleep_for(std::chrono::seconds(100));
 
 	return 0;
 }
